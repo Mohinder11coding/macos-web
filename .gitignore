@@ -1,0 +1,8 @@
+node_modules/
+
+# Test output: full-resolution captures, run logs, and intermediate build products.
+shots/
+*.log
+photos.json
+photos.js
+avatar.txt
