@@ -2,6 +2,8 @@
 
 A macOS desktop environment that runs in a single HTML file. One document, no build step, no bundler, no framework: markup, one stylesheet, and plain JavaScript.
 
+**[Try it](https://starknightt.github.io/macos-web/)**
+
 ![The desktop](docs/desktop.jpg)
 
 Thirty apps, a window manager, a dock that magnifies on a parabolic falloff, and a menu bar that adapts its ink to the wallpaper behind it. Several apps talk to real services, so the weather is the actual forecast, the map is a real slippy map, and the browser genuinely browses.
@@ -10,7 +12,7 @@ Thirty apps, a window manager, a dock that magnifies on a parabolic falloff, and
 
 Open `index.html` in a browser. That is the whole setup.
 
-Two things need an HTTP origin rather than the filesystem: YouTube refuses to embed a player into a `file://` page, and some browsers apply stricter cross-origin rules to local documents. To get those, serve the folder:
+Two things want an HTTP origin rather than the filesystem: YouTube refuses to embed a player into a `file://` page, and some browsers apply stricter cross-origin rules to local documents. The [hosted copy](https://starknightt.github.io/macos-web/) has both, or serve the folder yourself:
 
 ```bash
 python -m http.server 8080
