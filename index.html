@@ -1263,6 +1263,8 @@ svg{display:block;flex:none;width:16px;height:16px}
 .site .links a{padding:7px 15px;border-radius:9px;font-size:12.5px;color:#d8d8de;text-decoration:none;
   background:rgba(255,255,255,.055);border:.5px solid rgba(255,255,255,.09);transition:background .2s var(--e-out),transform .2s var(--e-out)}
 .site .links a:hover{background:rgba(255,255,255,.11);transform:translateY(-1px)}
+.site .links a.pri{background:var(--blue);border-color:transparent;color:var(--on-accent,#fff);font-weight:550}
+.site .links a.pri:hover{background:var(--blue-press,var(--blue));filter:brightness(1.06)}
 .site .stats{display:flex;gap:30px;margin-top:26px;padding-top:22px;border-top:.5px solid rgba(255,255,255,.08);width:min(440px,100%);justify-content:center}
 .site .stats div{text-align:center}
 .site .stats b{display:block;font-size:20px;font-weight:600;letter-spacing:-.02em}
@@ -6085,87 +6087,26 @@ const Cal = {
    ========================================================================== */
 /* Pages served from inside the file. Everything else goes to the network. */
 const SITES = {
+  /* The portfolio is a real site that refuses to be framed, so this is a launcher
+     rather than an imitation of it: every button leads somewhere that exists. */
   'prasen.dev': {
-    title: 'Prasenjit — design engineer', fav: '#4a9df8',
+    title: 'Prasenjit Nayak', fav: '#4a9df8',
     html: `<div class="site">
       <div class="avatar" style="background-image:url('${AVATAR}');background-size:cover;background-position:center"></div>
-      <h1>Prasenjit</h1>
-      <p class="role">Design engineer · interfaces, motion, and the details nobody names</p>
+      <h1>Prasenjit Nayak</h1>
+      <p class="role">Freelancing and collaborating with new people on exciting projects</p>
       <div class="links">
-        <a data-goto="prasen.dev/work">Work</a><a data-goto="prasen.dev/writing">Writing</a><a data-goto="github.com">GitHub</a><a data-goto="prasen.dev/contact">Contact</a>
+        <a class="pri" data-openext="https://www.prasen.dev/">Open prasen.dev</a>
+        <a data-goto="www.prasen.dev">Read it here</a>
       </div>
-      <div class="foot">prasen.dev</div>
-    </div>`
-  },
-  'prasen.dev/work': {
-    title: 'Work — prasen.dev', fav: '#4a9df8',
-    html: `<div class="site" style="justify-content:flex-start;padding-top:76px">
-      <h1 style="font-size:30px">Selected work</h1>
-      <p class="role">Three things worth showing.</p>
-      <div class="links" style="flex-direction:column;gap:12px;margin-top:26px;width:min(430px,100%)">
-        <a data-goto="prasen.dev/work/desktop" style="text-align:left;padding:15px 17px"><b style="display:block;font-size:14px;color:#fff;font-weight:600">desktop-web</b><span style="font-size:12px;color:#8b8b96">A complete desktop environment in a single HTML document.</span></a>
-        <a data-goto="prasen.dev/work/cleantype" style="text-align:left;padding:15px 17px"><b style="display:block;font-size:14px;color:#fff;font-weight:600">CleanType</b><span style="font-size:12px;color:#8b8b96">A menu-bar utility for typographic cleanup. Swift, about 4k lines.</span></a>
-        <a data-goto="prasen.dev/work/aurora" style="text-align:left;padding:15px 17px"><b style="display:block;font-size:14px;color:#fff;font-weight:600">aurora-synth</b><span style="font-size:12px;color:#8b8b96">A polyphonic synth built directly on the Web Audio API.</span></a>
+      <div class="links" style="margin-top:2px">
+        <a data-goto="github.com/StarKnightt">GitHub</a>
+        <a data-openext="https://www.youtube.com/@prasendev">YouTube</a>
+        <a data-goto="www.prasen.dev/blog/hello-world">Blog</a>
       </div>
-      <div class="foot" style="margin-top:30px"><a data-goto="prasen.dev" style="color:#8b8b96;text-decoration:none">← back</a></div>
+      <div class="foot">The live site opens in your real browser. Reader renders it in this one.</div>
     </div>`
   },
-  'prasen.dev/writing': {
-    title: 'Writing — prasen.dev', fav: '#4a9df8',
-    html: `<div class="site" style="justify-content:flex-start;padding-top:76px">
-      <h1 style="font-size:30px">Writing</h1><p class="role">Occasional, and usually about restraint.</p>
-      <div class="links" style="flex-direction:column;gap:10px;margin-top:24px;width:min(430px,100%)">
-        <a data-goto="prasen.dev/writing/shadows" style="text-align:left">Four shadows, one window</a>
-        <a data-goto="prasen.dev/writing/falloff" style="text-align:left">Why linear dock magnification looks wrong</a>
-        <a data-goto="prasen.dev/writing/frames" style="text-align:left">A dropped frame is louder than a gradient</a>
-      </div>
-      <div class="foot" style="margin-top:30px"><a data-goto="prasen.dev" style="color:#8b8b96;text-decoration:none">← back</a></div>
-    </div>`
-  },
-  'prasen.dev/contact': {
-    title: 'Contact — prasen.dev', fav: '#4a9df8',
-    html: `<div class="site">
-      <h1 style="font-size:30px">Say hello</h1>
-      <p class="role">Happy to talk about interfaces, motion, or anything rendered at 60fps.</p>
-      <div class="links" style="margin-top:22px"><a data-openext="https://prasen.dev">prasen.dev</a><a data-goto="prasen.dev/work">See the work</a></div>
-      <div class="foot" style="margin-top:30px"><a data-goto="prasen.dev" style="color:#8b8b96;text-decoration:none">← back</a></div>
-    </div>`
-  },
-  /* The portfolio's own sub-pages, so nothing on it dead-ends. */
-  ...(() => {
-    const page = (slug, title, kicker, body, meta) => [`prasen.dev/${slug}`, {
-      title: `${title} — prasen.dev`, fav: '#4a9df8',
-      html: `<div class="site" style="justify-content:flex-start;padding-top:72px;text-align:left;align-items:flex-start;
-        max-width:600px;margin:0 auto">
-        <h1 style="font-size:29px">${title}</h1>
-        <p class="role" style="font-size:13px">${meta}</p>
-        <p style="margin:18px 0 0;font-size:14.5px;line-height:1.7;color:#c9c9d2">${kicker}</p>
-        ${body.map(p => `<p style="margin:15px 0 0;font-size:14.5px;line-height:1.7;color:#9b9ba6">${p}</p>`).join('')}
-        <div class="foot" style="margin-top:34px"><a data-goto="prasen.dev/${slug.split('/')[0]}"
-          style="color:#8b8b96;text-decoration:none">← back</a></div>
-      </div>`
-    }];
-    return Object.fromEntries([
-      page('work/desktop', 'desktop-web', 'A desktop environment that runs in a single HTML document — window manager, dock, and thirty apps, with no build step anywhere.',
-        ['The interesting part was never the layout. It was the timing: spring curves that settle where AppKit settles, a dock that magnifies on a parabola rather than a line, and a genie minimise that follows a real Bézier path.',
-          'Every surface is glass, which means every surface is a compositing decision. Blur is expensive, so the expensive ones are pre-warmed before they are ever shown.'], 'Web · 2026'),
-      page('work/cleantype', 'CleanType', 'A menu-bar utility that fixes typography in whatever you just copied.',
-        ['Straight quotes become curly, three periods become an ellipsis, hyphens become the dash the sentence actually wanted. It watches the clipboard, does the work, and stays out of the way.',
-          'About four thousand lines of Swift, most of which is the rules and their exceptions.'], 'macOS · Swift'),
-      page('work/aurora', 'aurora-synth', 'A polyphonic synthesiser built directly on the Web Audio API — no library in between.',
-        ['Two oscillators per voice, a state-variable filter, and an envelope per stage. Sixteen voices before anything crackles.',
-          'Writing a synth teaches you what a millisecond is worth. Scheduling has to happen ahead of the audio clock, never on it.'], 'Web Audio'),
-      page('writing/shadows', 'Four shadows, one window', 'A macOS window does not have a shadow. It has four, and they do different jobs.',
-        ['There is a hairline that separates the window from what is behind it, a tight shadow that gives the edge weight, a wide soft one that places the window in the room, and a key shadow that only shows when the window is focused.',
-          'Collapse them into one and the window stops looking like an object. It becomes a rectangle with a blur under it.'], 'Notes on interface'),
-      page('writing/falloff', 'Why linear dock magnification looks wrong', 'The dock does not scale icons by distance. It scales them by a curve, and the curve is the whole effect.',
-        ['With a linear falloff, the icons next to the cursor grow at the same rate as the ones further out, and the row reads as a wedge. A parabolic falloff keeps the peak sharp and lets the shoulders relax.',
-          'The other half is the horizontal push. Icons have to slide as they grow, or the row grows longer than the dock and the whole thing shudders.'], 'Notes on interface'),
-      page('writing/frames', 'A dropped frame is louder than a gradient', 'Nobody notices a colour that is two percent off. Everybody notices a hitch.',
-        ['Visual fidelity has an enormous budget and motion has almost none. If a choice costs a frame, the frame wins — every time.',
-          'Which is why the expensive work happens before the interaction: measure once, cache, and let the animation do nothing but move pixels that already exist.'], 'Notes on interface'),
-    ]);
-  })(),
   'apple.com': {
     title: 'Apple', fav: '#111',
     html: `<div class="site light">
@@ -6635,7 +6576,7 @@ const Saf = {
   /* Used when the search API can't be reached, so the browser still answers. */
   offlineSearch(q) {
     const hits = [
-      { u: 'prasen.dev', t: 'Prasenjit — design engineer', d: 'Interfaces, motion, and far too many single-file experiments.' },
+      { u: 'prasen.dev', t: 'Prasenjit Nayak', d: 'Freelancing and collaborating with new people on exciting projects.' },
       { u: 'en.wikipedia.org/wiki/MacOS', t: 'macOS — Wikipedia', d: 'A Unix operating system developed and marketed by Apple since 2001.' },
       { u: 'developer.mozilla.org/en-US/docs/Web/CSS/backdrop-filter', t: 'backdrop-filter — CSS | MDN', d: 'Applies graphical effects such as blur to the area behind an element.' },
       { u: 'example.com', t: 'Example Domain', d: 'This domain is for use in illustrative examples in documents.' },

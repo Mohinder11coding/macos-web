@@ -33,9 +33,9 @@ const SHOTS = {
       __add('music', {}, [820, 470, 800, 470]);
       __add('notes', {}, [520, 96, 900, 540]);
       __add('safari', {}, [96, 74, 780, 500]);
-      Saf.go('prasen.dev');
+      Saf.go('caniuse.com/?search=backdrop-filter');
     });
-    await p.waitForTimeout(800);
+    await p.waitForTimeout(6000);
     const b = await p.locator('#dock .di[data-app="photos"]').boundingBox();
     await p.mouse.move(b.x + b.width / 2, b.y + b.height / 2, { steps: 16 });
     await p.waitForTimeout(560);
