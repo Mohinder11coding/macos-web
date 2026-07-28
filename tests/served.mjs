@@ -4,7 +4,7 @@ import { chromium } from 'playwright';
 import { fileURLToPath } from 'url';
 import path from 'path';
 
-const dir = path.dirname(fileURLToPath(import.meta.url));
+const root = path.join(path.dirname(fileURLToPath(import.meta.url)), '..');
 const base = 'http://localhost:8899/index.html?boot=0';
 
 const browser = await chromium.launch({
@@ -23,6 +23,6 @@ await page.evaluate(() => { const w = WM.open('safari'); Object.assign(w.node.st
 await page.waitForTimeout(600);
 await page.evaluate(() => Saf.go('youtube.com/watch?v=aqz-KE-bpKQ'));
 await page.waitForTimeout(5000);
-await page.screenshot({ path: path.join(dir, 'shots', 'served-video.png'), clip: { x: 40, y: 30, width: 1200, height: 780 } });
+await page.screenshot({ path: path.join(root, 'shots', 'served-video.png'), clip: { x: 40, y: 30, width: 1200, height: 780 } });
 console.log('shot → shots/served-video.png');
 await browser.close();

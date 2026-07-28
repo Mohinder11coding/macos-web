@@ -6,8 +6,8 @@ import { chromium } from 'playwright';
 import { fileURLToPath } from 'url';
 import path from 'path';
 
-const dir = path.dirname(fileURLToPath(import.meta.url));
-const url = 'file://' + path.join(dir, 'index.html').replace(/\\/g, '/') + '?boot=0';
+const root = path.join(path.dirname(fileURLToPath(import.meta.url)), '..');
+const url = 'file://' + path.join(root, 'index.html').replace(/\\/g, '/') + '?boot=0';
 
 const browser = await chromium.launch({ args: ['--window-position=-4000,-4000'] });
 const page = await browser.newPage({ viewport: { width: 1680, height: 1050 } });

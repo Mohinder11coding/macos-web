@@ -4,8 +4,8 @@ import { chromium } from 'playwright';
 import { fileURLToPath } from 'url';
 import path from 'path';
 
-const dir = path.dirname(fileURLToPath(import.meta.url));
-const url = 'file://' + path.join(dir, 'index.html').replace(/\\/g, '/') + '?boot=0';
+const root = path.join(path.dirname(fileURLToPath(import.meta.url)), '..');
+const url = 'file://' + path.join(root, 'index.html').replace(/\\/g, '/') + '?boot=0';
 
 const browser = await chromium.launch({ args: ['--window-position=-4000,-4000'] });
 const page = await browser.newPage({ viewport: { width: 1000, height: 480 }, deviceScaleFactor: 2 });
@@ -30,6 +30,6 @@ await page.setContent(`<body style="margin:0;background:
     <div style="margin-top:8px;color:#333">${names[i]}</div></div>`).join('')}
 </body>`);
 await page.waitForTimeout(500);
-await page.screenshot({ path: path.join(dir, 'shots', 'cursors.png'), fullPage: true });
+await page.screenshot({ path: path.join(root, 'shots', 'cursors.png'), fullPage: true });
 console.log('shot → shots/cursors.png');
 await browser.close();

@@ -2,8 +2,12 @@
    doesn't belong in someone's photo roll, tidies filename-shaped titles into
    captions, and derives a place from the words that are already there. */
 import { readFileSync } from 'fs';
+import { fileURLToPath } from 'url';
+import path from 'path';
 
-const raw = JSON.parse(readFileSync('photos.json', 'utf8'));
+const root = path.join(path.dirname(fileURLToPath(import.meta.url)), '..');
+
+const raw = JSON.parse(readFileSync(path.join(root, 'photos.json'), 'utf8'));
 
 const DROP = [
   /model rosie/i, /girl with swimming/i, /destroyed/i, /IR Spitzer/i,

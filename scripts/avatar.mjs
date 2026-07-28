@@ -6,7 +6,7 @@ import { readFileSync, writeFileSync } from 'fs';
 import { fileURLToPath } from 'url';
 import path from 'path';
 
-const dir = path.dirname(fileURLToPath(import.meta.url));
+const root = path.join(path.dirname(fileURLToPath(import.meta.url)), '..');
 const src = process.argv[2];
 const size = Number(process.argv[3] || 176);
 const b64 = readFileSync(src).toString('base64');
@@ -27,6 +27,6 @@ const out = await page.evaluate(async ([data, S]) => {
 }, [b64, size]);
 await browser.close();
 
-writeFileSync(path.join(dir, 'avatar.txt'), out.url);
+writeFileSync(path.join(root, 'avatar.txt'), out.url);
 console.log(`source ${out.w}x${out.h} → ${size}px jpeg, ${(out.url.length / 1024).toFixed(1)} KB of base64`);
 console.log('written to avatar.txt');

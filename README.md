@@ -47,7 +47,9 @@ Rather than mock every service, the apps that benefit from live data use public 
 
 ## How it is organised
 
-`index.html` is about ten thousand lines, in numbered sections: design tokens, the icon sprite sheet, system state, the window manager, the desktop shell, then one section per app, then startup. The CSS is a single sheet at the top, driven by custom properties so that appearance, accent and highlight changes are a variable write rather than a re-render.
+`index.html` is the entire product. It is about ten thousand lines, in numbered sections: design tokens, the icon sprite sheet, system state, the window manager, the desktop shell, then one section per app, then startup. The CSS is a single sheet at the top, driven by custom properties so that appearance, accent and highlight changes are a variable write rather than a re-render.
+
+Everything else in the repository is development tooling and never ships: `tests/` holds the Playwright suites, `scripts/` holds the screenshot and asset generators, and `docs/` holds the images in this file.
 
 A few decisions that shaped the rest:
 
@@ -63,7 +65,7 @@ The suites drive the real DOM through Playwright and assert on observable state.
 ```bash
 npm install
 
-npm test               # 298 functional checks across every app
+npm test               # 304 functional checks across every app
 npm run test:dead      # clicks every control and reports any that do nothing
 npm run test:fps       # frame times for dock magnification, Launchpad, genie, and more
 npm run test:wallpaper # wallpaper switching, including rapid switching and dead URLs
@@ -71,7 +73,7 @@ npm run test:audio     # measures real RMS and peak from the synthesiser's outpu
 npm run test:cursors   # verifies the custom cursor art resolves at every hotspot
 ```
 
-`node shot.mjs <scenario>` captures a named screenshot; `node shot.mjs` with no argument lists what is available. Screenshots run headed on purpose, because headless Chromium rasterises in software and silently drops `blur()` inside `backdrop-filter`, which makes every glass surface photograph flat.
+`node scripts/shot.mjs <scenario>` captures a named screenshot; `node scripts/shot.mjs` with no argument lists what is available. Screenshots run headed on purpose, because headless Chromium rasterises in software and silently drops `blur()` inside `backdrop-filter`, which makes every glass surface photograph flat.
 
 ## Credits
 

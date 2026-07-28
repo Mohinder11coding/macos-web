@@ -2,9 +2,9 @@ import { chromium } from 'playwright';
 import { fileURLToPath } from 'url';
 import path from 'path';
 
-const dir = path.dirname(fileURLToPath(import.meta.url));
+const root = path.join(path.dirname(fileURLToPath(import.meta.url)), '..');
 /* boot=0 skips power-on and login; those have their own scenarios. */
-const url = 'file://' + path.join(dir, 'index.html').replace(/\\/g, '/') + '?boot=0';
+const url = 'file://' + path.join(root, 'index.html').replace(/\\/g, '/') + '?boot=0';
 
 // One name = that shot (plus optional trailing JS to eval). Several names = batch.
 const args = process.argv.slice(2);
@@ -527,7 +527,7 @@ for (const name of names) {
   await SCENARIOS[name](page);
   if (extra) { await page.evaluate(extra); await page.waitForTimeout(700); }
   const file = (flags.out || name) + '.png';
-  await page.screenshot({ path: path.join(dir, 'shots', file), clip: adhoc || CLIPS[name] });
+  await page.screenshot({ path: path.join(root, 'shots', file), clip: adhoc || CLIPS[name] });
   console.log('shot →', 'shots/' + file);
 }
 if (errors.length) { console.log('--- ERRORS (' + errors.length + ') ---\n' + [...new Set(errors)].join('\n')); }

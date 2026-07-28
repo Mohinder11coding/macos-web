@@ -5,9 +5,9 @@ import { chromium } from 'playwright';
 import { fileURLToPath } from 'url';
 import path from 'path';
 
-const dir = path.dirname(fileURLToPath(import.meta.url));
+const root = path.join(path.dirname(fileURLToPath(import.meta.url)), '..');
 /* boot=0 skips power-on and login; the startup suite drives them explicitly. */
-const url = 'file://' + path.join(dir, 'index.html').replace(/\\/g, '/') + '?boot=0';
+const url = 'file://' + path.join(root, 'index.html').replace(/\\/g, '/') + '?boot=0';
 
 const browser = await chromium.launch();
 const page = await browser.newPage({ viewport: { width: 1680, height: 1050 } });

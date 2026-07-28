@@ -6,14 +6,15 @@
   "type": "module",
   "scripts": {
     "serve": "python -m http.server 8080",
-    "test": "node func.mjs",
-    "test:dead": "node dead.mjs",
-    "test:fps": "node fps.mjs",
-    "test:wallpaper": "node wall.mjs",
-    "test:audio": "node audio.mjs",
-    "test:cursors": "node curlive.mjs",
-    "shots": "node shot.mjs",
-    "docs": "node docshots.mjs"
+    "test": "node tests/func.mjs",
+    "test:dead": "node tests/dead.mjs",
+    "test:fps": "node tests/fps.mjs",
+    "test:wallpaper": "node tests/wall.mjs",
+    "test:audio": "node tests/audio.mjs",
+    "test:cursors": "node tests/curlive.mjs",
+    "test:served": "node tests/served.mjs",
+    "shots": "node scripts/shot.mjs",
+    "docs": "node scripts/docshots.mjs"
   },
   "license": "MIT",
   "devDependencies": {

@@ -4,8 +4,8 @@ import { chromium } from 'playwright';
 import { fileURLToPath } from 'url';
 import path from 'path';
 
-const dir = path.dirname(fileURLToPath(import.meta.url));
-const url = 'file://' + path.join(dir, 'index.html').replace(/\\/g, '/') + '?boot=0';
+const root = path.join(path.dirname(fileURLToPath(import.meta.url)), '..');
+const url = 'file://' + path.join(root, 'index.html').replace(/\\/g, '/') + '?boot=0';
 
 const helpers = `
   window.__only = (app, opts, rect) => {
@@ -74,7 +74,7 @@ for (const [name, run] of Object.entries(SHOTS)) {
   await page.waitForTimeout(2400);
   await page.addScriptTag({ content: helpers });
   await run(page);
-  const file = path.join(dir, 'docs', name + '.jpg');
+  const file = path.join(root, 'docs', name + '.jpg');
   await page.screenshot({ path: file, type: 'jpeg', quality: 88 });
   console.log('docs/' + name + '.jpg');
 }

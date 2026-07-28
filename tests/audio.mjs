@@ -2,6 +2,11 @@
    the actual signal level, because "no console errors" says nothing about whether a
    speaker would move. */
 import { chromium } from 'playwright';
+import { fileURLToPath } from 'url';
+import path from 'path';
+
+const root = path.join(path.dirname(fileURLToPath(import.meta.url)), '..');
+const url = 'file://' + path.join(root, 'index.html').replace(/\\/g, '/') + '?boot=0';
 
 const browser = await chromium.launch({
   headless: false,
@@ -11,7 +16,7 @@ const browser = await chromium.launch({
 const page = await browser.newPage({ viewport: { width: 1400, height: 900 } });
 const errs = [];
 page.on('pageerror', e => errs.push(e.message));
-await page.goto('file:///c:/Code/macos-web/index.html?boot=0');
+await page.goto(url);
 await page.waitForTimeout(1800);
 
 await page.evaluate(() => { WM.list.slice().forEach(w => WM.close(w.id)); WM.open('music'); });
@@ -90,7 +95,7 @@ const strict = await chromium.launch({
   args: ['--window-position=-4000,-4000', '--disable-features=CalculateNativeWinOcclusion'],
 });
 const sp = await strict.newPage({ viewport: { width: 1400, height: 900 } });
-await sp.goto('file:///c:/Code/macos-web/index.html?boot=0');
+await sp.goto(url);
 await sp.waitForTimeout(1800);
 await sp.evaluate(() => { WM.list.slice().forEach(w => WM.close(w.id)); WM.open('music'); });
 await sp.waitForTimeout(600);
