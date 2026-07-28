@@ -5625,17 +5625,17 @@ function syncEvent(ev) {
 const mkEvent = o => syncEvent({ id: ++EV_ID, dur: 60, cal: 'work', loc: '', notes: '', ...o });
 const EVENTS = [
   { d: [2026, 6, 27], t: 'Sprint planning', s: 570, dur: 45, cal: 'work' },
-  { d: [2026, 6, 27], t: 'Dentist', s: 930, dur: 40, cal: 'home', loc: 'Dr. Sethi · 2nd Cross Rd' },
-  { d: [2026, 6, 27], t: 'Dinner — Ananya', s: 1200, dur: 120, cal: 'home', loc: 'Toit' },
-  { d: [2026, 6, 28], t: 'One-on-one with Meera', s: 630, dur: 30, cal: 'work' },
+  { d: [2026, 6, 27], t: 'Dentist', s: 930, dur: 40, cal: 'home', loc: 'Dr. Reed · Stevens Creek' },
+  { d: [2026, 6, 27], t: 'Dinner — Kate', s: 1200, dur: 120, cal: 'home', loc: 'Bar Aldo' },
+  { d: [2026, 6, 28], t: 'One-on-one with Daniel', s: 630, dur: 30, cal: 'work' },
   { d: [2026, 6, 28], t: 'Deploy window', s: 1020, dur: 90, cal: 'work' },
   { d: [2026, 6, 29], t: 'Review PR #142', s: 660, dur: 60, cal: 'work' },
-  { d: [2026, 6, 29], t: 'Priya — coffee', s: 1050, dur: 45, cal: 'home', loc: 'Third Wave' },
+  { d: [2026, 6, 29], t: 'David — coffee', s: 1050, dur: 45, cal: 'home', loc: 'Third Wave' },
   { d: [2026, 6, 30], t: 'Podcast recording', s: 1020, dur: 90, cal: 'work', loc: 'Studio B' },
   { d: [2026, 7, 3], t: 'Flight to SFO', s: 375, dur: 210, cal: 'home', loc: 'BLR T2' },
   { d: [2026, 6, 21], t: 'Design review', s: 840, dur: 60, cal: 'work' },
   { d: [2026, 6, 15], t: 'Beta cutoff', s: null, cal: 'work' },
-  { d: [2026, 6, 31], t: "Sofia's birthday", s: null, cal: 'bday' },
+  { d: [2026, 6, 31], t: "John's birthday", s: null, cal: 'bday' },
   { d: [2026, 7, 15], t: 'Independence Day', s: null, cal: 'hol' },
 ].map(mkEvent);
 
@@ -7405,11 +7405,11 @@ function photoArt(i, kindOverride) {
    21 · MAIL
    ========================================================================== */
 const MAILS = [
-  { f: 'Figma', s: 'Aanya left 3 comments on Desktop v4', p: 'Tray blur reads heavy at 62px — can we try 44 and put them side by side?', t: '4:21 PM', c: '#a259ff', unread: true, flag: true },
+  { f: 'Figma', s: 'Daniel left 3 comments on Desktop v4', p: 'Tray blur reads heavy at 62px — can we try 44 and put them side by side?', t: '4:21 PM', c: '#a259ff', unread: true, flag: true },
   { f: 'Vercel', s: 'Your deployment is live', p: 'desktop-web is ready. Build finished in 0s — there was nothing to build.', t: '3:58 PM', c: '#1d1d1f', unread: true },
   { f: 'Linear', s: 'ENG-412 moved to In Review', p: 'Shadow repaint during minimise: 12 dropped frames down to 0. Needs your sign-off.', t: '1:12 PM', c: '#5e6ad2' },
   { f: 'GitHub', s: '[workspace/desktop] PR #142 review requested', p: 'Column view: preview pane sizing. 4 files changed, +218 −31.', t: '11:04 AM', c: '#24292f' },
-  { f: 'Ananya Rao', s: 'Re: dock easing', p: 'The cosine falloff is right, but shorten the settle. Under 300ms or it reads as lag.', t: 'Yesterday', c: '#bf5af2' },
+  { f: 'Anna Haro', s: 'Re: dock easing', p: 'The cosine falloff is right, but shorten the settle. Under 300ms or it reads as lag.', t: 'Yesterday', c: '#bf5af2' },
   { f: 'Apple Developer', s: 'macOS Tahoe 26 beta 4 is available', p: 'Liquid Glass refinements, Spotlight actions, and 42 resolved issues.', t: 'Yesterday', c: '#1d1d1f' },
   { f: 'Mom', s: 'call me when free', p: 'and eat something that is not coffee', t: 'Saturday', c: '#ff375f', flag: true },
 ];
@@ -7520,14 +7520,14 @@ const Mail = {
    ========================================================================== */
 const CHATS = [
   {
-    n: 'Ananya', c: '#0a84ff', t: '4:28 PM', msgs: [
+    n: 'Kate', c: '#64d2ff', t: '4:28 PM', msgs: [
       ['them', 'lake trip still on for saturday?'], ['them', 'weather says clear all weekend'],
       ['me', 'yes. leaving at 6 so we get the light'], ['them', 'six in the morning is a threat'],
       ['me', 'bring coffee then'], ['them', 'bringing coffee AND a blanket, i know how you drive'],
     ]
   },
   {
-    n: 'Sofia', c: '#30d158', t: '2:14 PM', msgs: [
+    n: 'John', c: '#30d158', t: '2:14 PM', msgs: [
       ['them', 'did the review land'], ['me', 'merged an hour ago'],
       ['them', 'legend. the animation on the sidebar is so smooth now'],
       ['me', 'took four tries to get the easing right'], ['them', 'it shows, in a good way'],
@@ -7535,46 +7535,46 @@ const CHATS = [
   },
   {
     n: 'Design Crew', c: '#bf5af2', t: '11:40 AM', group: true, msgs: [
-      ['them', 'Meera: shadows on the unfocused windows are too heavy'],
+      ['them', 'Daniel: shadows on the unfocused windows are too heavy'],
       ['me', 'fixed — dropped the two outer layers'],
-      ['them', 'Meera: much better, they sit back now'],
-      ['them', 'Chloe: can we get the same treatment on the sheets?'],
-      ['me', 'already in, refresh'], ['them', 'Chloe: 🤝'],
+      ['them', 'Daniel: much better, they sit back now'],
+      ['them', 'Freda: can we get the same treatment on the sheets?'],
+      ['me', 'already in, refresh'], ['them', 'Freda: 🤝'],
     ]
   },
   {
-    n: 'Priya', c: '#ff9f0a', t: '10:02 AM', msgs: [
+    n: 'David', c: '#ff9f0a', t: '10:02 AM', msgs: [
       ['them', 'are you coming to the thing on friday'], ['me', 'what thing'],
       ['them', 'the thing i told you about twice'], ['me', 'the rooftop one?'],
       ['them', 'yes. 8pm. do not be fashionably late'], ['me', "i'll be unfashionably early"],
     ]
   },
   {
-    n: 'Clara', c: '#5e5ce6', t: '9:15 AM', msgs: [
+    n: 'Anna', c: '#0a84ff', t: '9:15 AM', msgs: [
       ['them', 'random but your site loads absurdly fast'], ['me', 'no framework, no fonts to wait on'],
       ['them', 'i keep forgetting that is allowed'],
     ]
   },
   {
-    n: 'Aisha', c: '#ff2d55', t: 'Yesterday', msgs: [
+    n: 'Chris', c: '#ff2d55', t: 'Yesterday', msgs: [
       ['them', 'sending you the playlist for the drive'], ['them', '4 hours, no repeats'],
       ['me', 'if there is a single sad song i am turning around'], ['them', 'no promises'],
     ]
   },
   {
-    n: 'Emma', c: '#64d2ff', t: 'Yesterday', msgs: [
+    n: 'Hank', c: '#5e5ce6', t: 'Yesterday', msgs: [
       ['them', 'coffee thursday?'], ['me', 'the place with the bad chairs?'],
       ['them', 'the place with the good espresso and the bad chairs, yes'], ['me', 'deal'],
     ]
   },
   {
-    n: 'Meera', c: '#ffd60a', t: 'Sunday', msgs: [
+    n: 'Daniel', c: '#ffd60a', t: 'Sunday', msgs: [
       ['them', 'sent you the moodboard'], ['me', 'the third row is the one'],
       ['them', 'knew you would say that'],
     ]
   },
   {
-    n: 'Nisha', c: '#a2845e', t: 'Saturday', msgs: [
+    n: 'Freda', c: '#a2845e', t: 'Saturday', msgs: [
       ['them', 'did you get the keys back from the landlord'], ['me', 'picking them up tomorrow'],
       ['them', 'text me when you do'],
     ]
@@ -8430,7 +8430,7 @@ APPS.reminders = {
       ['Review PR #142 — column view sizing', 'Today 6:30 PM', false, '#0a84ff'],
       ['Pick up dry cleaning', 'Today', false, '#ff9f0a'],
       ['Book the car for Saturday', 'Tomorrow', false, '#0a84ff'],
-      ['Reply to Ananya about the tray blur', 'Tomorrow 9:00 AM', false, '#30d158'],
+      ['Reply to Anna about the tray blur', 'Tomorrow 9:00 AM', false, '#30d158'],
       ['Fix unfocused window shadows', 'Done', true, '#8e8e93'],
       ['Write the neofetch ASCII by hand', 'Done', true, '#8e8e93'],
     ];
@@ -8724,11 +8724,11 @@ APPS.contacts = {
   name: 'Contacts', icon: 'app-contacts', w: 760, h: 540, minW: 480, minH: 320,
   menus: () => stdMenus('contacts'),
   mount(w) {
-    const C = [['Aisha Khan', 'Photographer · Mumbai', '#ff2d55'], ['Ananya Rao', 'Product design', '#0a84ff'],
-    ['Clara Fontaine', 'Type designer · Lyon', '#5e5ce6'], ['Emma Lindqvist', 'Frontend · Stockholm', '#64d2ff'],
-    ['Meera Iyer', 'Engineering manager', '#ffd60a'], ['Nisha Pillai', 'Architect · Kochi', '#a2845e'],
-    ['Priya Sharma', 'Motion · Delhi', '#ff9f0a'], ['Sofia Marchetti', 'iOS engineer · Milan', '#30d158'],
-    ['Mom', 'Family', '#ff375f'], ['Dr. Sethi', 'Dentist', '#8e8e93']];
+    const C = [['Anna Haro', 'Product design', '#0a84ff'], ['Chris Lee', 'Photographer', '#ff2d55'],
+    ['Daniel Higgins', 'Engineering manager', '#ffd60a'], ['David Taylor', 'Motion design', '#ff9f0a'],
+    ['Freda Klein', 'Architect', '#a2845e'], ['Hank Zakroff', 'Type designer', '#5e5ce6'],
+    ['John Appleseed', 'iOS engineer', '#30d158'], ['Kate Bell', 'Frontend', '#64d2ff'],
+    ['Mom', 'Family', '#ff375f'], ['Dr. Reed', 'Dentist', '#8e8e93']];
     w.C = C;
     return `<div class="wb">
       <div class="sbar" data-drag style="width:250px;padding-top:0"><div class="sb-top"><div data-tl></div></div>
@@ -8748,7 +8748,7 @@ APPS.contacts = {
           <div><div style="font-size:25px;font-weight:600;letter-spacing:-.02em">${esc(c[0])}</div>
           <div style="font-size:13px;color:var(--txt-2)">${esc(c[1])}</div></div></div>
         <div style="margin-top:24px;max-width:420px">
-          ${[['mobile', '+91 98765 ' + (10000 + i * 137)], ['email', c[0].split(' ')[0].toLowerCase() + '@example.com'], ['home', 'Bengaluru, India']]
+          ${[['email', c[0].split(' ')[0].toLowerCase() + '@example.com'], ['home', 'Cupertino, CA']]
         .map(([k, v]) => `<div style="display:flex;gap:16px;padding:8px 0;border-top:.5px solid var(--line)">
             <span style="width:60px;text-align:right;font-size:11.5px;color:var(--txt-2)">${k}</span>
             <span style="font-size:13px;color:var(--blue)">${esc(v)}</span></div>`).join('')}
@@ -8848,8 +8848,8 @@ APPS.facetime = {
   menus: () => stdMenus('facetime'),
   mount(w) {
     w.st = {
-      calls: [['Ananya Rao', 'Outgoing', '24:12', 'Today 3:40 PM'], ['Design Crew', 'Missed', '', 'Today 11:02 AM'],
-      ['Sofia Marchetti', 'Incoming', '8:31', 'Yesterday'], ['Mom', 'Outgoing', '41:07', 'Saturday']],
+      calls: [['Anna Haro', 'Outgoing', '24:12', 'Today 3:40 PM'], ['Design Crew', 'Missed', '', 'Today 11:02 AM'],
+      ['John Appleseed', 'Incoming', '8:31', 'Yesterday'], ['Mom', 'Outgoing', '41:07', 'Saturday']],
       sel: 0, live: false, secs: 0, muted: false, cam: false,
     };
     return `<div class="wb">
@@ -8919,7 +8919,7 @@ APPS.facetime = {
         <div style="font-size:12.5px;font-weight:600;margin-bottom:8px">New FaceTime</div>
         <div class="sfield" style="width:100%"><span>${ic('g-search')}</span><input placeholder="Name or email" spellcheck="false"></div>
         <div style="display:flex;flex-direction:column;gap:1px;margin-top:10px;background:var(--line);border-radius:8px;overflow:hidden">
-          ${['Ananya Rao', 'Priya Sharma', 'Emma Lindqvist', 'Mom'].map(n =>
+          ${['Anna Haro', 'David Taylor', 'Kate Bell', 'Mom'].map(n =>
         `<div class="mi" data-pick="${esc(n)}" style="background:var(--win-2);border-radius:0">${esc(n)}</div>`).join('')}</div>
         <button class="btn pri" data-go style="width:100%;height:26px;margin-top:10px">FaceTime</button></div>`);
       menuUnder(t, []); Pop.close(true);
@@ -9207,7 +9207,7 @@ APPS.voice = {
   menus: () => stdMenus('voice'),
   mount(w) {
     const M = [['Standup notes', 'Today 4:02 PM', '1:12'], ['Dock easing idea', 'Today 11:40 AM', '0:38'],
-    ['Call with Meera', 'Yesterday', '14:26'], ['Guitar riff', 'Saturday', '2:04']];
+    ['Call with Daniel', 'Yesterday', '14:26'], ['Guitar riff', 'Saturday', '2:04']];
     w.M = M;
     return `<div class="wb">
       <div class="sbar" data-drag style="width:260px;padding-top:0">
@@ -9604,8 +9604,8 @@ const NotifCenter = {
     box.append(row, Widgets.weather(), Widgets.calendar(), Widgets.stocks(), Widgets.reminders());
     box.insertAdjacentHTML('beforeend', `<div class="nc-title">Earlier Today</div>`);
     [
-      ['app-messages', 'Messages', 'Ananya', 'bringing coffee AND a blanket, i know how you drive', '4:28 PM'],
-      ['app-mail', 'Mail', 'Figma', 'Meera left 3 comments on Desktop v4', '4:21 PM'],
+      ['app-messages', 'Messages', 'Kate', 'bringing coffee AND a blanket, i know how you drive', '4:28 PM'],
+      ['app-mail', 'Mail', 'Figma', 'Daniel left 3 comments on Desktop v4', '4:21 PM'],
       ['app-calendar', 'Calendar', 'Dentist', 'in 10 minutes · 3:50 PM', '3:40 PM'],
       ['app-settings', 'Software Update', 'macOS Tahoe 26.0.1', 'A new update is available.', '1:02 PM'],
     ].forEach(([ico, app, t, b, tm]) => box.insertAdjacentHTML('beforeend',
