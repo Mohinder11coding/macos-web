@@ -21,6 +21,16 @@ python -m http.server 8080
 
 Chromium and Safari are the targets. Firefox works, but its `backdrop-filter` implementation renders the glass surfaces slightly differently.
 
+## Why there is a package.json
+
+Because the tests need a browser to drive, and nothing else.
+
+`index.html` has zero dependencies. It imports nothing, is not compiled, minified or generated, and the copy in this repository is byte-for-byte the copy that gets served. Nobody needs Node, npm or a terminal to run the desktop — a browser opening one file is the entire requirement, which is the point of the project.
+
+What `package.json` declares is a single development dependency, Playwright, used by the suites in `tests/` and the screenshot generators in `scripts/`. Installing it creates a `node_modules`, which is git-ignored and has never been committed. Delete `tests/`, `scripts/` and `package.json` and the desktop is completely unaffected; you would only lose the ability to verify it.
+
+The alternative was to claim the animations hold sixty frames and that every control is wired up, and hope you took my word for it.
+
 ## What is in it
 
 **System.** Boot sequence and lock screen, light and dark appearance with an Auto mode that follows the host OS, nine accent colours and a separate highlight colour, six wallpapers with a two-stage loader, Spotlight, Launchpad, Notification Centre with live widgets, Control Centre, and a menu bar whose extras all open real menus.
