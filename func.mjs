@@ -891,7 +891,7 @@ const TESTS = {
     await wait(400);
     check('desktop icons', (await count('#desktop .dicon')) >= 3, String(await count('#desktop .dicon')));
     const names = await txt('#desktop');
-    for (const n of ['Macintosh HD', 'notes.txt'])
+    for (const n of ['Macintosh HD', 'prasenx.txt'])
       check('desktop has ' + n, names.includes(n));
 
     const ic = page.locator('#desktop .dicon').first();

@@ -1490,6 +1490,8 @@ svg{display:block;flex:none;width:16px;height:16px}
 .te{flex:1;display:flex;flex-direction:column;min-height:0;background:var(--win)}
 .te-doc{flex:1;overflow:auto;padding:22px 34px 40px;font-family:var(--font-mono);font-size:12.5px;line-height:1.6;
   -webkit-user-select:text;user-select:text;cursor:var(--cur-text);white-space:pre-wrap}
+.te-doc a{color:var(--blue);text-decoration:underline;text-underline-offset:2px;cursor:var(--cur-hand)}
+.te-doc a:hover{text-decoration-thickness:1.5px}
 .pv{flex:1;display:grid;place-items:center;background:var(--win-3);min-height:0;overflow:auto;padding:22px}
 .pv .sheet{background:var(--win);border-radius:3px;box-shadow:0 2px 6px rgba(0,0,0,.14),0 16px 40px -12px rgba(0,0,0,.28);padding:34px 40px;max-width:520px;font-size:12px;line-height:1.6}
 .pv .sheet h1{font-size:19px;margin:0 0 3px;letter-spacing:-.02em}
@@ -3361,7 +3363,7 @@ const Desktop = {
   items: [
     { id: 'hd', name: 'Macintosh HD', icon: 'f-hd', cell: [0, 0], open: () => WM.open('finder', { path: ['Macintosh HD'] }) },
     { id: 'projects', name: 'Projects', icon: 'f-folder', cell: [0, 1], open: () => WM.open('finder', { path: ['Prasenjit', 'Projects'] }) },
-    { id: 'notes', name: 'notes.txt', icon: 'f-txt', cell: [0, 2], open: () => WM.open('textedit', { file: 'notes.txt' }) },
+    { id: 'notes', name: 'prasenx.txt', icon: 'f-txt', cell: [0, 2], open: () => WM.open('textedit', { file: 'prasenx.txt' }) },
     { id: 'shot', name: 'Screenshot 2026‑07‑27 at 4.34.11 PM.png', icon: 'f-img', cell: [0, 3], open: () => WM.open('preview', { file: 'Screenshot' }) },
     { id: 'guide', name: 'Interface Guidelines.pdf', icon: 'f-pdf', cell: [1, 0], open: () => WM.open('preview', { file: 'Interface Guidelines.pdf' }) },
   ],
@@ -4129,7 +4131,7 @@ const FS = FOLD('Macintosh HD', [
           FOLD('aurora-synth', [FILE('synth.ts', 'f-code', '44 KB', 'TypeScript', dt(7, 22)), FILE('index.html', 'f-code', '9 KB', 'HTML document', dt(7, 22))]),
           FILE('todo.md', 'f-txt', '1 KB', 'Markdown', dt(7, 26)),
         ]),
-        FILE('notes.txt', 'f-txt', '2 KB', 'Plain text', dt(7, 27, 14, 2)),
+        FILE('prasenx.txt', 'f-txt', '1 KB', 'Plain text', dt(7, 27, 14, 2)),
         FILE('Screenshot 2026-07-27 at 4.34.11 PM.png', 'f-img', '3.8 MB', 'PNG image', dt(7, 27, 16, 34)),
         FILE('Interface Guidelines.pdf', 'f-pdf', '188 KB', 'PDF document', dt(7, 4)),
       ]),
@@ -4197,7 +4199,7 @@ const PLACES = {
 };
 const RECENTS = () => [
   fsGet(['Macintosh HD', 'Users', 'prasenjit', 'Desktop', 'Projects', 'desktop-web', 'index.html']),
-  fsGet(['Macintosh HD', 'Users', 'prasenjit', 'Desktop', 'notes.txt']),
+  fsGet(['Macintosh HD', 'Users', 'prasenjit', 'Desktop', 'prasenx.txt']),
   fsGet(['Macintosh HD', 'Users', 'prasenjit', 'Documents', 'Writing', 'on-restraint.md']),
   fsGet(['Macintosh HD', 'Users', 'prasenjit', 'Downloads', 'render-final.mp4']),
   fsGet(['Macintosh HD', 'Users', 'prasenjit', 'Desktop', 'Interface Guidelines.pdf']),
@@ -5039,21 +5041,17 @@ const upStr = () => {
 };
 
 const FILE_TEXT = {
-  'notes.txt': `macOS, in one HTML file
-========================
+  'prasenx.txt': `Where to find me
+================
 
-The whole desktop is a single document: no build step, no bundler,
-no framework. Just markup, one stylesheet, and a few thousand lines
-of plain JavaScript.
+About me     https://prasen.dev
+GitHub       https://github.com/StarKnightt
+X            https://x.com/prasenx
+YouTube      https://youtube.com/@prasendev
+Instagram    https://www.instagram.com/prasenn_x/
+Discord      https://discord.com/users/878205528570990602
 
-Things that actually work
-  - the dock magnifies on a cosine falloff, smoothed every frame
-  - windows drag with inertia, resize from eight handles, and
-    genie-minimise into their own dock icon
-  - this terminal parses real commands against a real (virtual) tree
-  - dark mode repaints the entire system, not just the wallpaper
-
-Try: neofetch, tree, ls -la, cd Projects, theme dark`,
+Every link above opens in your real browser.`,
   'todo.md': `# todo
 
 - [x] squircle clip path from a superellipse, not border-radius
@@ -5240,8 +5238,11 @@ APPS.textedit = {
   mount(w, o) {
     const name = (o.file && o.file.name) || o.file || 'Untitled.txt';
     const body = FILE_TEXT[name] || `${name}\n\n(this file is empty)`;
+    /* TextEdit detects bare URLs and makes them clickable, so this one does too. */
+    const doc = esc(body).replace(/https?:\/\/[^\s<]+[^\s<.,)]/g,
+      u => `<a href="${u}" data-openext="${u}">${u}</a>`);
     return titlebar(name, { plain: true, right: `<button class="tbtn" data-nodrag data-tefmt title="Format">${ic('g-title')}</button>` }) +
-      `<div class="te"><div class="te-doc selectable" contenteditable="true" spellcheck="false">${esc(body)}</div></div>`;
+      `<div class="te"><div class="te-doc selectable" contenteditable="true" spellcheck="false">${doc}</div></div>`;
   },
   ready(w) {
     const doc = w.node.querySelector('.te-doc');

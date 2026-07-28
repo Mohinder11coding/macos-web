@@ -207,7 +207,7 @@ const SCENARIOS = {
   batt:      async (p) => { await p.locator('#menubar [data-st="battery"]').click(); await p.waitForTimeout(420); },
 
   tl: async (p) => {
-    await p.evaluate(() => __only('textedit', { file: { name: 'notes.txt', k: 'Plain Text', body: 'hello' } }, [170, 40, 400, 300]));
+    await p.evaluate(() => __only('textedit', { file: { name: 'prasenx.txt', k: 'Plain Text', body: 'hello' } }, [170, 40, 400, 300]));
     await p.waitForTimeout(400);
     const b = await p.locator('.win .tl').boundingBox();
     await p.mouse.move(b.x + 8, b.y + 6);
