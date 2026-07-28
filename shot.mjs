@@ -119,7 +119,7 @@ const SCENARIOS = {
     await p.evaluate(() => {
       __only('safari', {}, [70, 60, 1120, 700]);
       Saf.toggleSidebar(); Saf.toggleFavBar();
-      Saf.go('prasen.dev'); Saf.newTab(); Saf.go('en.wikipedia.org/wiki/Bézier_curve');
+      Saf.go('apple.com'); Saf.newTab(); Saf.go('en.wikipedia.org/wiki/Bézier_curve');
     });
     await p.waitForTimeout(3000);
   },
