@@ -5102,46 +5102,6 @@ grow and then holding perfectly steady.
 
 Nobody will notice any of it. That's the point.`,
   'index.html': `<!DOCTYPE html>\n<html lang="en" data-theme="light">\n<head>\n  <title>macOS</title>\n  <!-- 400-odd KB of desktop -->\n</head>\n<body>\n  <div id="stage">…</div>\n
-<script type="module" id="liquid-glass-engine">
-  import { LiquidGlass } from 'https://cdn.jsdelivr.net/npm/@ybouane/liquidglass/dist/index.js';
-
-  // The library requires every glass surface to be a direct child of its root.
-  // #menubar and #dockwrap are direct children of #stage in this desktop.
-  const root = document.querySelector('#stage');
-  const surfaces = [
-    document.querySelector('#menubar'),
-    document.querySelector('#dockwrap')
-  ].filter(Boolean);
-
-  for (const surface of surfaces) {
-    surface.dataset.config = JSON.stringify({
-      blurAmount: 0.22,
-      refraction: 0.38,
-      chromAberration: 0.018,
-      edgeHighlight: 0.13,
-      specular: 0.16,
-      fresnel: 0.72,
-      cornerRadius: surface.id === 'dockwrap' ? 24 : 8,
-      zRadius: 18,
-      opacity: 0.96,
-      saturation: 0.12,
-      tintStrength: 0.025,
-      shadowOpacity: 0.2,
-      shadowSpread: 8,
-      shadowOffsetY: 2
-    });
-  }
-
-  try {
-    await document.fonts.ready;
-    const glass = await LiquidGlass.init({ root, glassElements: surfaces });
-    document.documentElement.classList.add('liquid-glass-ready');
-    window.__macOSLiquidGlass = glass;
-  } catch (error) {
-    // Existing CSS backdrop-filter styling remains as the graceful fallback.
-    console.warn('Liquid Glass shader unavailable; using CSS glass fallback.', error);
-  }
-</script>
 
 </body>\n</html>`,
   'main.swift': `import SwiftUI\n\n@main\nstruct CleanTypeApp: App {\n    var body: some Scene {\n        MenuBarExtra("CleanType", systemImage: "textformat") {\n            SettingsView()\n        }\n        .menuBarExtraStyle(.window)\n    }\n}`,
@@ -9893,6 +9853,47 @@ const Startup = {
 
   Startup.run();
 })();
+</script>
+
+<script type="module" id="liquid-glass-engine">
+  import { LiquidGlass } from 'https://cdn.jsdelivr.net/npm/@ybouane/liquidglass/dist/index.js';
+
+  // The library requires every glass surface to be a direct child of its root.
+  // #menubar and #dockwrap are direct children of #stage in this desktop.
+  const root = document.querySelector('#stage');
+  const surfaces = [
+    document.querySelector('#menubar'),
+    document.querySelector('#dockwrap')
+  ].filter(Boolean);
+
+  for (const surface of surfaces) {
+    surface.dataset.config = JSON.stringify({
+      blurAmount: 0.22,
+      refraction: 0.38,
+      chromAberration: 0.018,
+      edgeHighlight: 0.13,
+      specular: 0.16,
+      fresnel: 0.72,
+      cornerRadius: surface.id === 'dockwrap' ? 24 : 8,
+      zRadius: 18,
+      opacity: 0.96,
+      saturation: 0.12,
+      tintStrength: 0.025,
+      shadowOpacity: 0.2,
+      shadowSpread: 8,
+      shadowOffsetY: 2
+    });
+  }
+
+  try {
+    await document.fonts.ready;
+    const glass = await LiquidGlass.init({ root, glassElements: surfaces });
+    document.documentElement.classList.add('liquid-glass-ready');
+    window.__macOSLiquidGlass = glass;
+  } catch (error) {
+    // Existing CSS backdrop-filter styling remains as the graceful fallback.
+    console.warn('Liquid Glass shader unavailable; using CSS glass fallback.', error);
+  }
 </script>
 </body>
 </html>
